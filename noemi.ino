@@ -34,7 +34,7 @@ Motor ms(6, 7, 8);    // motor object 2
 #define tP 4 // trigger pin
 #define eP 2 // echo pin
 
-#define ir_L 2 // sensore IR sinistro
+#define ir_L 5 // sensore IR sinistro
 #define ir_R 3 // sensore IR destro
 
 int Speed = 27; // Velocità dei motori
