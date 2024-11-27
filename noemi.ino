@@ -1,16 +1,19 @@
+/*
+Emanuele Filetti, Marzo 2024-Novembre 2024 NoemiV2023
+*/
 class Motor {
 public:
   int v; // pin enable
   int a; // pin avanti
   int i; // pin indietro
   Motor(int x, int y, int z) {
-    v = x;
-    a = y;
-    i = z;
-    pinMode(v, OUTPUT);
+    v = x; //asse x
+    a = y; //asse y
+    i = z; //asse z
+    pinMode(v, OUTPUT); //imposta il pin in output
     pinMode(a, OUTPUT);
     pinMode(i, OUTPUT);
-    digitalWrite(v, LOW);
+    digitalWrite(v, LOW); //imposta il pin a segnale basso
     digitalWrite(a, LOW);
     digitalWrite(i, LOW);
   }
@@ -31,15 +34,15 @@ public:
 Motor md(11, 12, 13); // motor object 1
 Motor ms(6, 7, 8);    // motor object 2
 
-#define tP 4 // trigger pin
-#define eP 2 // echo pin
+#define tP 4 //pin trigger
+#define eP 2 //pin echo
 
-#define ir_L 5 // sensore IR sinistro
-#define ir_R 3 // sensore IR destro
+#define ir_L 5 // pin sensore IR sinistro
+#define ir_R 3 // pin sensore IR destro
 
 int Speed = 27; // Velocità dei motori
 
-void ul_setup() {
+void ul_setup() { //setup del sensore ultrasuoni
   pinMode(tP, OUTPUT);
   pinMode(eP, INPUT);
   pinMode(ir_R, INPUT);
@@ -47,13 +50,13 @@ void ul_setup() {
   Serial.begin(9600);
 }
 
-void ul_loop() {
-  digitalWrite(tP, LOW);
+void ul_loop() { //loop sensore ultrasuoni
+  digitalWrite(tP, LOW); 
   digitalWrite(tP, HIGH);
   delayMicroseconds(100);
   digitalWrite(tP, LOW);
   long duration = pulseIn(eP, HIGH);
-  long distance = duration * 0.034 / 2;
+  long distance = duration * 0.034 / 2; //calcolo della distanza (durata*velocità/2 (il 2 perchè il segnale ultrasonico arriva allostacolo e torna indietro)
   Serial.println(distance);
   
   int L_s = digitalRead(ir_L); // Leggi il sensore sinistro
